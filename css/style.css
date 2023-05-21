@@ -1,0 +1,127 @@
+body{
+    margin: 40px 100px;
+    font-family: "Lato";
+    font-size: 18px;
+}
+
+/* HEADER */
+
+header{
+    text-align: center;
+}
+
+header img {
+    width: 268px;
+}
+
+/* BARRE DE RECHERCHE */
+
+.searchBar{
+    display: block;
+    width: 100%;
+    height: 69px;
+    background-color: #E7E7E7;
+    border: 0;
+    padding: 10px;
+    color: #000;
+    opacity: 0.25;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.search{
+    position: relative;
+}
+
+.fa-magnifying-glass{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+}
+
+/* BOUTONS */
+
+.btn{
+    width: 170px;
+    height: 69px;
+    margin: 20px;
+    margin-left: 0;
+    color: #FFF;
+    font-weight: 700;
+    border: 0;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.btnIngredients{
+    background-color: #3282F7;
+}
+
+.btnAppareils{
+    background-color: #68D9A4;
+}
+
+.btnUstensiles{
+    background-color: #ED6454;
+}
+
+/* RECETTES */
+
+.recipeContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    grid-gap: 50px;
+}
+
+.recipeBlock{
+    background-color: #E7E7E7;
+    border-radius: 5px;
+}
+
+.imgRecipe{
+    height: 178px;
+    background-color: #C7BEBE;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.recipeText{
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.recipeText .recipeName{
+    font-weight: 400;
+    font-size: 18px;
+    margin: 0;
+}
+
+.recipeText .recipeTime{
+    font-weight: 700;
+    text-align: end;
+    margin: 0;
+}
+
+.recipeText .recipeIngredients{
+    padding: 0;
+    font-size: 12px;
+    margin: 0;
+}
+
+.recipeText .recipeIngredients li{
+    list-style-type: none;
+}
+
+.recipeText .recipeIngredients span{
+    font-weight: 700;
+}
+
+.recipeText .recipeDetail{
+    font-size: 12px;
+    margin: 0;
+}
