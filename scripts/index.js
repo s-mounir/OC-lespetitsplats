@@ -1,7 +1,8 @@
-async function displayData(recipes) {
+async function displayData(RecipeList) {
   const recipesSection = document.querySelector('.recipeContainer');
+  recipesSection.innerHTML = "";
 
-  recipes.forEach((recipe) => {
+  RecipeList.forEach((recipe) => {
     const recipeModel = recipeFactory(recipe);
     const recipeCardDOM = recipeModel.getRecipeCardDOM();
     recipesSection.appendChild(recipeCardDOM);
@@ -10,8 +11,14 @@ async function displayData(recipes) {
 
 async function init() {
   // Récupère les datas des recettes
-  console.log(recipes);
   displayData(recipes);
 }
 
 init();
+
+const searchRecipe = document.querySelector('.searchBar');
+searchRecipe.addEventListener('input', (e) => {
+  const element = e.target.value.toLowerCase();
+  const newRecipeList = recipes.filter((recipe) => recipe.name.toLowerCase().includes(element));
+  displayData(newRecipeList);
+});
