@@ -1,6 +1,6 @@
 body{
     margin: 40px 100px;
-    font-family: "Lato";
+    font-family: 'Lato', sans-serif;
     font-size: 18px;
 }
 
@@ -124,4 +124,7 @@ header img {
 .recipeText .recipeDetail{
     font-size: 12px;
     margin: 0;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    max-height: 150px;
 }
