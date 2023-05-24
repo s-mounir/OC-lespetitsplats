@@ -24,10 +24,13 @@ header img {
     border: 0;
     padding: 10px;
     color: #000;
-    opacity: 0.25;
     border-radius: 5px;
     margin: 10px 0;
     font-size: 18px;
+}
+
+.searchBar::placeholder{
+    opacity: 0.25;
 }
 
 .search{
@@ -55,6 +58,11 @@ header img {
     font-size: 18px;
 }
 
+.dropdownIngredients{
+    display: inline-block;
+    position: relative;
+}
+
 .btnIngredients{
     background-color: #3282F7;
 }
@@ -65,6 +73,31 @@ header img {
 
 .btnUstensiles{
     background-color: #ED6454;
+}
+
+.divIngredients{
+    display: none;
+    background-color: #3282F7;
+    border-radius: 5px;
+    min-width: 300px;
+    min-height: 69px;
+    top: 0;
+    color: #FFF;
+    font-size: 18px;
+}
+
+.searchBarIngredient{
+    background-color: #3282F7;
+    border: 0;
+    width: 90%;
+    color: #FFF;
+    font-size: 18px;
+}
+
+.searchBarIngredient::placeholder{
+    color: #FFF;
+    opacity: 0.5;
+    font-size: 18px;
 }
 
 /* RECETTES */

@@ -18,13 +18,21 @@
             <input type="search" id="searchBar" class="searchBar" name="recipe" placeholder="Rechercher une recette">
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <button class="btn btnIngredients">Ingredients <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="dropdownIngredients">
+            <button class="btn btnIngredients">Ingredients <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="divIngredients">
+                <input type="search" id="searchBarIngredient" class="searchBarIngredient" name="ingredients" placeholder="Rechercher un ingrédient">
+                <i class="fa-solid fa-chevron-up closeDropdownIngredients"></i>
+                <ul class="listIngredients"></ul>
+            </div>
+        </div>
         <button class="btn btnAppareils">Appareils <i class="fa-solid fa-chevron-down"></i></button>
         <button class="btn btnUstensiles">Ustensiles <i class="fa-solid fa-chevron-down"></i></button>
         <div class="recipeContainer">
         </div>
         <script src="./data/recipes.js"></script>
         <script src="./scripts/factories/recipes.js"></script>
+        <script src="./scripts/utils/button.js"></script>
         <script src="./scripts/index.js"></script>
     </body>
 </html>
