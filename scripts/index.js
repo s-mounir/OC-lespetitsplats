@@ -1,11 +1,13 @@
 let currentList = [];
 let ingredientList = [];
 let ingredientTags = [];
+let appareilTags = [];
+let ustensilTags = [];
 let searchInput;
 
 async function displayData(RecipeList) {
   const recipesSection = document.querySelector('.recipeContainer');
-  recipesSection.innerHTML = "";
+  recipesSection.innerHTML = '';
 
   RecipeList.forEach((recipe) => {
     const recipeModel = recipeFactory(recipe);
@@ -39,3 +41,21 @@ dropdownIngredients.addEventListener('click', openDropdown);
 
 const closeDropdownIngredients = document.querySelector('.closeDropdownIngredients');
 closeDropdownIngredients.addEventListener('click', closeDropdown);
+
+// SEARCHBAR Ingredients
+const searchIngredients = document.querySelector('.searchBarIngredient');
+searchIngredients.addEventListener('input', (e) => {
+  const element = e.target.value.toLowerCase();
+  console.log(element);
+
+  const ulIngredients = document.querySelector('.listIngredients');
+  ulIngredients.innerHTML = '';
+  ingredientList = ingredientList.filter((ing) => ing.toLowerCase().includes(element));
+  const ingredientListUniq = [...new Set(ingredientList)];
+  ingredientListUniq.forEach((ing) => {
+    const listElement = document.createElement('li');
+    listElement.innerText = ing;
+    ulIngredients.append(listElement);
+    listElement.addEventListener('click', () => addTag(ing));
+  });
+});

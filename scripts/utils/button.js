@@ -1,5 +1,3 @@
-let isDropdownIngredients = false;
-
 function openDropdown() {
   console.log("j'ouvre");
   const btnIngredients = document.querySelector('.btnIngredients');
@@ -19,7 +17,6 @@ function openDropdown() {
 }
 
 function closeDropdown() {
-  console.log("je ferme");
   const btnIngredients = document.querySelector('.btnIngredients');
   const divIngredients = document.querySelector('.divIngredients');
   btnIngredients.style.display = 'block';
@@ -28,6 +25,9 @@ function closeDropdown() {
   const ulIngredients = document.querySelector('.listIngredients');
   ulIngredients.innerHTML = '';
   ingredientList = [];
+
+  const searchIngredients = document.querySelector('.searchBarIngredient');
+  searchIngredients.value = '';
 }
 
 function addTag(element) {
@@ -43,7 +43,6 @@ function addTag(element) {
 }
 
 function removeTag(id) {
-  console.log('adieu');
   const element = document.getElementById(id);
   element.remove();
 
