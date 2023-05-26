@@ -44,6 +44,23 @@ header img {
     font-size: 30px;
 }
 
+/* TAGS */
+
+.tag{
+    background-color: #3282F7;
+    color: #FFF;
+    border: 0;
+    height: 37px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 15px 15px 0 0;
+    padding: 0 15px;
+}
+
+.fa-circle-xmark{
+    margin-left: 15px;
+}
+
 /* BOUTONS */
 
 .btn{
@@ -84,6 +101,7 @@ header img {
     top: 0;
     color: #FFF;
     font-size: 18px;
+    padding: 15px;
 }
 
 .searchBarIngredient{
@@ -98,6 +116,11 @@ header img {
     color: #FFF;
     opacity: 0.5;
     font-size: 18px;
+}
+
+.listIngredients{
+    column-count: 3;
+    list-style: none;
 }
 
 /* RECETTES */
