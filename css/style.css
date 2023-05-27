@@ -47,7 +47,6 @@ header img {
 /* TAGS */
 
 .tag{
-    background-color: #3282F7;
     color: #FFF;
     border: 0;
     height: 37px;
@@ -75,26 +74,13 @@ header img {
     font-size: 18px;
 }
 
-.dropdownIngredients{
+.dropdown{
     display: inline-block;
     position: relative;
 }
 
-.btnIngredients{
-    background-color: #3282F7;
-}
-
-.btnAppareils{
-    background-color: #68D9A4;
-}
-
-.btnUstensiles{
-    background-color: #ED6454;
-}
-
-.divIngredients{
+.dropdownOpen{
     display: none;
-    background-color: #3282F7;
     border-radius: 5px;
     min-width: 300px;
     min-height: 69px;
@@ -104,23 +90,44 @@ header img {
     padding: 15px;
 }
 
-.searchBarIngredient{
-    background-color: #3282F7;
+.searchBarDropDown{
     border: 0;
     width: 90%;
     color: #FFF;
     font-size: 18px;
 }
 
-.searchBarIngredient::placeholder{
+.searchBarDropDown::placeholder{
     color: #FFF;
     opacity: 0.5;
     font-size: 18px;
 }
 
-.listIngredients{
+.listDropDown{
     column-count: 3;
     list-style: none;
+}
+
+
+.btnIngredients, 
+.divIngredients, 
+.searchBarIngredients,
+.tagIngredients{
+    background-color: #3282F7;
+}
+
+.btnAppareils, 
+.divAppareils, 
+.searchBarAppareils,
+.tagAppareils{
+    background-color: #68D9A4;
+}
+
+.btnUstensiles,
+.divUstensiles,
+.searchBarUstensiles,
+.tagUstensiles{
+    background-color: #ED6454;
 }
 
 /* RECETTES */

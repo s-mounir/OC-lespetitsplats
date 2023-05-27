@@ -1,5 +1,7 @@
 let currentList = [];
 let ingredientList = [];
+let appareilList = [];
+let ustensilList = [];
 let ingredientTags = [];
 let appareilTags = [];
 let ustensilTags = [];
@@ -29,24 +31,29 @@ const searchRecipe = document.querySelector('.searchBar');
 searchRecipe.addEventListener('input', (e) => {
   const element = e.target.value.toLowerCase();
   searchInput = element;
-  filter(searchInput, ingredientTags);
+  filter(searchInput, ingredientTags, appareilTags, ustensilTags);
 });
 
 // BUTTON
 const dropdownIngredients = document.querySelector('.btnIngredients');
-const btnAppareils = document.querySelector('.btnAppareils');
-const btnUstensiles = document.querySelector('.btnUstensiles');
+const dropdownAppareils = document.querySelector('.btnAppareils');
+const dropdownUstensiles = document.querySelector('.btnUstensiles');
 
-dropdownIngredients.addEventListener('click', openDropdown);
+dropdownIngredients.addEventListener('click', () => openDropdown('Ingredients', ingredientList));
+dropdownAppareils.addEventListener('click', () => openDropdown('Appareils', appareilList));
+dropdownUstensiles.addEventListener('click', () => openDropdown('Ustensiles', ustensilList));
 
 const closeDropdownIngredients = document.querySelector('.closeDropdownIngredients');
-closeDropdownIngredients.addEventListener('click', closeDropdown);
+const closeDropdownAppareils = document.querySelector('.closeDropdownAppareils');
+const closeDropdownUstensiles = document.querySelector('.closeDropdownUstensiles');
+closeDropdownIngredients.addEventListener('click', () => closeDropdown('Ingredients', ingredientList));
+closeDropdownAppareils.addEventListener('click', () => closeDropdown('Appareils', appareilList));
+closeDropdownUstensiles.addEventListener('click', () => closeDropdown('Ustensiles', ustensilList));
 
 // SEARCHBAR Ingredients
-const searchIngredients = document.querySelector('.searchBarIngredient');
+const searchIngredients = document.querySelector('.searchBarIngredients');
 searchIngredients.addEventListener('input', (e) => {
   const element = e.target.value.toLowerCase();
-  console.log(element);
 
   const ulIngredients = document.querySelector('.listIngredients');
   ulIngredients.innerHTML = '';
@@ -56,6 +63,6 @@ searchIngredients.addEventListener('input', (e) => {
     const listElement = document.createElement('li');
     listElement.innerText = ing;
     ulIngredients.append(listElement);
-    listElement.addEventListener('click', () => addTag(ing));
+    listElement.addEventListener('click', () => addTag(ing, 'Ingredients'));
   });
 });

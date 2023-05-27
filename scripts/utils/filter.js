@@ -1,9 +1,9 @@
-function filter(searchInput, ingredientTags) {
-  const ingredientFilter = searchInput !== undefined ? [...ingredientTags, searchInput] : ingredientTags;
-  // filtre les noms de recettes
+function filter(searchInput, ingredientTags, appareilTags, ustensilTags) {
+  const ingredientFilter = (searchInput !== undefined && searchInput !== '') ? [...ingredientTags, searchInput] : ingredientTags;
+  // filtre des noms de recettes
   const recipeListName = recipes.filter((recipe) =>
     recipe.name.toLowerCase().includes(searchInput));
-  // filtre les ingrédients
+  // filtre des ingrédients
   let recipeListIngredient = [];
   ingredientFilter.forEach((ingredient) => {
     const ingredientLC = ingredient.toLowerCase();
@@ -13,13 +13,30 @@ function filter(searchInput, ingredientTags) {
 
     recipeListIngredient = recipeListIngredient.concat(recipesFiltered);
   });
-  // filtre les descriptions
+  // filtre des descriptions
   const recipeListDescription = recipes.filter((recipe) =>
     recipe.description.toLowerCase().includes(searchInput));
-  const concatList = recipeListName.concat(recipeListDescription).concat(recipeListIngredient);
+
+  // filtre des appareils
+  let recipeListAppareil = [];
+  appareilTags.forEach((appareil) => {
+    const appareilLC = appareil.toLowerCase();
+    const recipesFiltered = recipes.filter((recipe) =>
+      recipe.appliance.toLowerCase().includes(appareilLC));
+    recipeListAppareil = recipeListAppareil.concat(recipesFiltered);
+  });
+  // filtre des ustensils
+  let recipeListUstensil = [];
+  appareilTags.forEach((ustensil) => {
+    const ustensilLC = ustensil.toLowerCase();
+    const recipesFiltered = recipes.filter((recipe) => recipe.ustensils.forEach((ustensil) => ustensil.toLowerCase().includes(ustensilLC)));
+    recipeListUstensil = recipeListUstensil.concat(recipesFiltered);
+  });
+  console.log(recipeListUstensil);
+
+  const concatList = recipeListName.concat(recipeListDescription).concat(recipeListIngredient)
+    .concat(recipeListAppareil).concat(recipeListUstensil);
   const newRecipeList = concatList.filter((item, idx) => concatList.indexOf(item) === idx);
   displayData(newRecipeList);
   currentList = newRecipeList;
-  //console.log(recipeListIngredient);
-  console.log(ingredientFilter);
 }
