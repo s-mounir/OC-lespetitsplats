@@ -27,12 +27,11 @@ function filter(searchInput, ingredientTags, appareilTags, ustensilTags) {
   });
   // filtre des ustensils
   let recipeListUstensil = [];
-  appareilTags.forEach((ustensil) => {
+  ustensilTags.forEach((ustensil) => {
     const ustensilLC = ustensil.toLowerCase();
-    const recipesFiltered = recipes.filter((recipe) => recipe.ustensils.forEach((ustensil) => ustensil.toLowerCase().includes(ustensilLC)));
+    const recipesFiltered = recipes.filter((recipe) => recipe.ustensils.join().toLowerCase().includes(ustensilLC));
     recipeListUstensil = recipeListUstensil.concat(recipesFiltered);
   });
-  console.log(recipeListUstensil);
 
   const concatList = recipeListName.concat(recipeListDescription).concat(recipeListIngredient)
     .concat(recipeListAppareil).concat(recipeListUstensil);
