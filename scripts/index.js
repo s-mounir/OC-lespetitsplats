@@ -5,7 +5,7 @@ let ustensilList = [];
 let ingredientTags = [];
 let appareilTags = [];
 let ustensilTags = [];
-let searchInput;
+let searchInput = '';
 
 async function displayData(RecipeList) {
   const recipesSection = document.querySelector('.recipeContainer');
@@ -30,15 +30,19 @@ init();
 const searchRecipe = document.querySelector('.searchBar');
 searchRecipe.addEventListener('input', (e) => {
   const element = e.target.value.toLowerCase();
-  searchInput = element;
-  filter(searchInput, ingredientTags, appareilTags, ustensilTags);
+  if (element.length >= 3) {
+    searchInput = element;
+    filter(searchInput, ingredientTags, appareilTags, ustensilTags);
+  } else {
+    searchInput = '';
+    filter(searchInput, ingredientTags, appareilTags, ustensilTags);
+  }
 });
 
 // BUTTON
 const dropdownIngredients = document.querySelector('.btnIngredients');
 const dropdownAppareils = document.querySelector('.btnAppareils');
 const dropdownUstensiles = document.querySelector('.btnUstensiles');
-
 dropdownIngredients.addEventListener('click', () => openDropdown('Ingredients', ingredientList));
 dropdownAppareils.addEventListener('click', () => openDropdown('Appareils', appareilList));
 dropdownUstensiles.addEventListener('click', () => openDropdown('Ustensiles', ustensilList));
@@ -51,18 +55,6 @@ closeDropdownAppareils.addEventListener('click', () => closeDropdown('Appareils'
 closeDropdownUstensiles.addEventListener('click', () => closeDropdown('Ustensiles', ustensilList));
 
 // SEARCHBAR Ingredients
-const searchIngredients = document.querySelector('.searchBarIngredients');
-searchIngredients.addEventListener('input', (e) => {
-  const element = e.target.value.toLowerCase();
-
-  const ulIngredients = document.querySelector('.listIngredients');
-  ulIngredients.innerHTML = '';
-  ingredientList = ingredientList.filter((ing) => ing.toLowerCase().includes(element));
-  const ingredientListUniq = [...new Set(ingredientList)];
-  ingredientListUniq.forEach((ing) => {
-    const listElement = document.createElement('li');
-    listElement.innerText = ing;
-    ulIngredients.append(listElement);
-    listElement.addEventListener('click', () => addTag(ing, 'Ingredients'));
-  });
-});
+filterTags('Ingredients', ingredientList);
+filterTags('Appareils', appareilList);
+filterTags('Ustensiles', ustensilList);

@@ -187,7 +187,9 @@ header img {
 .recipeText .recipeDetail{
     font-size: 12px;
     margin: 0;
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    max-height: 150px;
+    overflow: hidden;
+    width:100px;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
 }
