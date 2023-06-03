@@ -11,11 +11,11 @@ async function displayData(RecipeList) {
   const recipesSection = document.querySelector('.recipeContainer');
   recipesSection.innerHTML = '';
 
-  RecipeList.forEach((recipe) => {
-    const recipeModel = recipeFactory(recipe);
+  for (let i = 0; i < RecipeList.length; i++) {
+    const recipeModel = recipeFactory(RecipeList[i]);
     const recipeCardDOM = recipeModel.getRecipeCardDOM();
     recipesSection.appendChild(recipeCardDOM);
-  });
+  }
 }
 
 async function init() {
