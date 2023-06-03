@@ -23,8 +23,8 @@ function recipeFactory(data) {
     recipeDetail.classList.add('recipeDetail');
     recipeDetail.textContent = description;
 
-    ingredients.forEach((element) => {
-      const { ingredient, quantity, unit } = element;
+    for (let i = 0; i < ingredients.length; i++) {
+      const { ingredient, quantity, unit } = ingredients[i];
       const recipeIngredient = document.createElement('li');
       const unitExist = unit ? unit : '';
       if (quantity) {
@@ -33,7 +33,7 @@ function recipeFactory(data) {
         recipeIngredient.innerHTML = '<span class="ingredientName">' + ingredient + '</span> '
       }
       recipeIngredients.append(recipeIngredient);
-    });
+    }
 
     recipeText.append(recipeName, recipeTime, recipeIngredients, recipeDetail);
     recipeBlock.append(imgRecipe, recipeText);
