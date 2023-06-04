@@ -2,8 +2,14 @@ function openDropdown(filterElem, list) {
   //close all dropdown before opening a new one
   const allBtn = document.querySelectorAll('.btn');
   const allDiv = document.querySelectorAll('.dropdownOpen');
-  allDiv.forEach((elem) => elem.style.display = 'none');
-  allBtn.forEach((elem) => elem.style.display = 'block');
+  for (let i = 0; i < allDiv.length; i++) {
+    const elem = allDiv[i];
+    elem.style.display = 'none';
+  }
+  for (let i = 0; i < allBtn.length; i++) {
+    const elem = allBtn[i];
+    elem.style.display = 'block';
+  }
 
   const btn = document.querySelector('.btn' + filterElem);
   const div = document.querySelector('.div' + filterElem);
@@ -12,41 +18,48 @@ function openDropdown(filterElem, list) {
   div.style.display = 'block';
   switch (filterElem) {
     case 'Ingredients':
-      currentList.map((recipe) =>
-        recipe.ingredients.map((elem) => {
+      for (let i = 0; i < currentList.length; i++) {
+        const recipe = currentList[i];
+        for (let j = 0; j < recipe.ingredients.length; j++) {
+          const elem = recipe.ingredients[j];
           const upperCase = elem.ingredient.charAt(0).toUpperCase();
           const lowerCase = elem.ingredient.slice(1).toLowerCase();
           const capitalizedString = upperCase + lowerCase;
-          return list.push(capitalizedString);
-        }));
+          list.push(capitalizedString);
+        }
+      }
       break;
     case 'Appareils':
-      currentList.map((recipe) => {
+      for (let i = 0; i < currentList.length; i++) {
+        const recipe = currentList[i];
         const upperCase = recipe.appliance.charAt(0).toUpperCase();
         const lowerCase = recipe.appliance.slice(1).toLowerCase();
         const capitalizedString = upperCase + lowerCase;
-        return list.push(capitalizedString);
-      });
+        list.push(capitalizedString);
+      }
       break;
     case 'Ustensiles':
-      currentList.map((recipe) =>
-        recipe.ustensils.forEach((elem) => {
+      for (let i = 0; i < currentList.length; i++) {
+        const recipe = currentList[i];
+        for (let j = 0; j < recipe.ustensils.length; j++) {
+          const elem = recipe.ustensils[j];
           const upperCase = elem.charAt(0).toUpperCase();
           const lowerCase = elem.slice(1).toLowerCase();
           const capitalizedString = upperCase + lowerCase;
-          return list.push(capitalizedString);
-        }));
+          list.push(capitalizedString);
+        }
+      }
       break;
     default:
       tagList = [];
   }
   const listUniq = [...new Set(list)];
-  listUniq.forEach((element) => {
+  for (let i = 0; i < listUniq.length; i++) {
     const listElement = document.createElement('li');
-    listElement.innerText = element;
+    listElement.innerText = listUniq[i];
     ul.append(listElement);
-    listElement.addEventListener('click', () => addTag(element, filterElem));
-  });
+    listElement.addEventListener('click', () => addTag(listUniq[i], filterElem));
+  }
 }
 
 function closeDropdown(filterElem, list) {
@@ -125,13 +138,19 @@ function filterTags(filterElem, elemList) {
 
     const ul = document.querySelector('.list' + filterElem);
     ul.innerHTML = '';
-    const elemListFilter = elemList.filter((elem) => elem.toLowerCase().includes(element));
+    const elemListFilter = [];
+    for (let i = 0; i < elemList.length; i++) {
+      const elem = elemList[i];
+      if (elem.toLowerCase().includes(element)) {
+        elemListFilter.push(elem);
+      }
+    }
     const listUniq = [...new Set(elemListFilter)];
-    listUniq.forEach((elem) => {
+    for (let i = 0; i < listUniq.length; i++) {
       const listElement = document.createElement('li');
-      listElement.innerText = elem;
+      listElement.innerText = listUniq[i];
       ul.append(listElement);
       listElement.addEventListener('click', () => addTag(elem, filterElem));
-    });
+    }
   });
 }
