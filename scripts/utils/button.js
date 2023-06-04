@@ -1,4 +1,10 @@
 function openDropdown(filterElem, list) {
+  //close all dropdown before opening a new one
+  const allBtn = document.querySelectorAll('.btn');
+  const allDiv = document.querySelectorAll('.dropdownOpen');
+  allDiv.forEach((elem) => elem.style.display = 'none');
+  allBtn.forEach((elem) => elem.style.display = 'block');
+
   const btn = document.querySelector('.btn' + filterElem);
   const div = document.querySelector('.div' + filterElem);
   const ul = document.querySelector('.list' + filterElem);
@@ -7,14 +13,29 @@ function openDropdown(filterElem, list) {
   switch (filterElem) {
     case 'Ingredients':
       currentList.map((recipe) =>
-        recipe.ingredients.map((elem) => list.push(elem.ingredient)));
+        recipe.ingredients.map((elem) => {
+          const upperCase = elem.ingredient.charAt(0).toUpperCase();
+          const lowerCase = elem.ingredient.slice(1).toLowerCase();
+          const capitalizedString = upperCase + lowerCase;
+          return list.push(capitalizedString);
+        }));
       break;
     case 'Appareils':
-      currentList.map((recipe) => list.push(recipe.appliance));
+      currentList.map((recipe) => {
+        const upperCase = recipe.appliance.charAt(0).toUpperCase();
+        const lowerCase = recipe.appliance.slice(1).toLowerCase();
+        const capitalizedString = upperCase + lowerCase;
+        return list.push(capitalizedString);
+      });
       break;
     case 'Ustensiles':
       currentList.map((recipe) =>
-        recipe.ustensils.forEach((elem) => list.push(elem)));
+        recipe.ustensils.forEach((elem) => {
+          const upperCase = elem.charAt(0).toUpperCase();
+          const lowerCase = elem.slice(1).toLowerCase();
+          const capitalizedString = upperCase + lowerCase;
+          return list.push(capitalizedString);
+        }));
       break;
     default:
       tagList = [];
@@ -95,4 +116,22 @@ function removeTag(id, filterElem) {
     && appareilTags.length === 0 && ustensilTags.length === 0) {
     init();
   }
+}
+
+function filterTags(filterElem, elemList) {
+  const searchElements = document.querySelector('.searchBar' + filterElem);
+  searchElements.addEventListener('input', (e) => {
+    const element = e.target.value.toLowerCase();
+
+    const ul = document.querySelector('.list' + filterElem);
+    ul.innerHTML = '';
+    const elemListFilter = elemList.filter((elem) => elem.toLowerCase().includes(element));
+    const listUniq = [...new Set(elemListFilter)];
+    listUniq.forEach((elem) => {
+      const listElement = document.createElement('li');
+      listElement.innerText = elem;
+      ul.append(listElement);
+      listElement.addEventListener('click', () => addTag(elem, filterElem));
+    });
+  });
 }
