@@ -1,5 +1,4 @@
 function filter(searchInput, ingredientTags, appareilTags, ustensilTags) {
-<<<<<<< HEAD
     const ingredientFilter = (searchInput !== undefined && searchInput !== '') ? [...ingredientTags, searchInput] : ingredientTags;
     // filtre des noms de recettes
     const recipeListName = recipes.filter((recipe) =>
