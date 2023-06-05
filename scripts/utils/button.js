@@ -141,7 +141,7 @@ function filterTags(filterElem, elemList) {
     const elemListFilter = [];
     for (let i = 0; i < elemList.length; i++) {
       const elem = elemList[i];
-      if (elem.toLowerCase().includes(element)) {
+      if (elem.toLowerCase().match(element)) {
         elemListFilter.push(elem);
       }
     }

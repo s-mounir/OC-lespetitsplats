@@ -1,4 +1,4 @@
-let currentList = [];
+let currentList = recipes;
 let ingredientList = [];
 let appareilList = [];
 let ustensilList = [];
