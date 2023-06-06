@@ -1,51 +1,51 @@
 function openDropdown(filterElem, list) {
   //close all dropdown before opening a new one
-  const allBtn = document.querySelectorAll('.btn');
-  const allDiv = document.querySelectorAll('.dropdownOpen');
-  for (let i = 0; i < allDiv.length; i++) {
-    const elem = allDiv[i];
+  var allBtn = document.querySelectorAll('.btn');
+  var allDiv = document.querySelectorAll('.dropdownOpen');
+  for (var i = 0; i < allDiv.length; i++) {
+    var elem = allDiv[i];
     elem.style.display = 'none';
   }
-  for (let i = 0; i < allBtn.length; i++) {
-    const elem = allBtn[i];
+  for (var i = 0; i < allBtn.length; i++) {
+    var elem = allBtn[i];
     elem.style.display = 'block';
   }
 
-  const btn = document.querySelector('.btn' + filterElem);
-  const div = document.querySelector('.div' + filterElem);
-  const ul = document.querySelector('.list' + filterElem);
+  var btn = document.querySelector('.btn' + filterElem);
+  var div = document.querySelector('.div' + filterElem);
+  var ul = document.querySelector('.list' + filterElem);
   btn.style.display = 'none';
   div.style.display = 'block';
   switch (filterElem) {
     case 'Ingredients':
-      for (let i = 0; i < currentList.length; i++) {
-        const recipe = currentList[i];
-        for (let j = 0; j < recipe.ingredients.length; j++) {
-          const elem = recipe.ingredients[j];
-          const upperCase = elem.ingredient.charAt(0).toUpperCase();
-          const lowerCase = elem.ingredient.slice(1).toLowerCase();
-          const capitalizedString = upperCase + lowerCase;
+      for (var i = 0; i < currentList.length; i++) {
+        var recipe = currentList[i];
+        for (var j = 0; j < recipe.ingredients.length; j++) {
+          var elem = recipe.ingredients[j];
+          var upperCase = elem.ingredient.charAt(0).toUpperCase();
+          var lowerCase = elem.ingredient.slice(1).toLowerCase();
+          var capitalizedString = upperCase + lowerCase;
           list.push(capitalizedString);
         }
       }
       break;
     case 'Appareils':
-      for (let i = 0; i < currentList.length; i++) {
-        const recipe = currentList[i];
-        const upperCase = recipe.appliance.charAt(0).toUpperCase();
-        const lowerCase = recipe.appliance.slice(1).toLowerCase();
-        const capitalizedString = upperCase + lowerCase;
+      for (var i = 0; i < currentList.length; i++) {
+        var recipe = currentList[i];
+        var upperCase = recipe.appliance.charAt(0).toUpperCase();
+        var lowerCase = recipe.appliance.slice(1).toLowerCase();
+        var capitalizedString = upperCase + lowerCase;
         list.push(capitalizedString);
       }
       break;
     case 'Ustensiles':
-      for (let i = 0; i < currentList.length; i++) {
-        const recipe = currentList[i];
-        for (let j = 0; j < recipe.ustensils.length; j++) {
-          const elem = recipe.ustensils[j];
-          const upperCase = elem.charAt(0).toUpperCase();
-          const lowerCase = elem.slice(1).toLowerCase();
-          const capitalizedString = upperCase + lowerCase;
+      for (var i = 0; i < currentList.length; i++) {
+        var recipe = currentList[i];
+        for (var j = 0; j < recipe.ustensils.length; j++) {
+          var elem = recipe.ustensils[j];
+          var upperCase = elem.charAt(0).toUpperCase();
+          var lowerCase = elem.slice(1).toLowerCase();
+          var capitalizedString = upperCase + lowerCase;
           list.push(capitalizedString);
         }
       }
@@ -53,9 +53,20 @@ function openDropdown(filterElem, list) {
     default:
       tagList = [];
   }
-  const listUniq = [...new Set(list)];
-  for (let i = 0; i < listUniq.length; i++) {
-    const listElement = document.createElement('li');
+  var listUniq = [];
+  for (var i = 0; i < list.length; i++) {
+    var isElemInList = false;
+    for (var j = 0; j < listUniq.length; j++) {
+      if (list[i] === listUniq[j]){
+        isElemInList = true;
+      }
+    }
+    if (!isElemInList) {
+      listUniq.push(list[i]);
+    }
+  }
+  for (var i = 0; i < listUniq.length; i++) {
+    var listElement = document.createElement('li');
     listElement.innerText = listUniq[i];
     ul.append(listElement);
     listElement.addEventListener('click', () => addTag(listUniq[i], filterElem));
@@ -63,29 +74,29 @@ function openDropdown(filterElem, list) {
 }
 
 function closeDropdown(filterElem, list) {
-  const btn = document.querySelector('.btn' + filterElem);
-  const div = document.querySelector('.div' + filterElem);
+  var btn = document.querySelector('.btn' + filterElem);
+  var div = document.querySelector('.div' + filterElem);
   btn.style.display = 'block';
   div.style.display = 'none';
 
-  const ul = document.querySelector('.list' + filterElem);
+  var ul = document.querySelector('.list' + filterElem);
   ul.innerHTML = '';
   list = [];
 
-  const search = document.querySelector('.searchBar' + filterElem);
+  var search = document.querySelector('.searchBar' + filterElem);
   search.value = '';
 }
 
 function addTag(element, filterElem) {
-  const tags = document.querySelector('.tags');
-  const button = document.createElement('button');
+  var tags = document.querySelector('.tags');
+  var button = document.createElement('button');
   button.innerHTML = element + '<i class="fa-regular fa-circle-xmark"></i>';
   button.id = element;
   button.classList.add('tag');
   button.classList.add('tag' + filterElem);
   tags.append(button);
-  button.addEventListener('click', () => removeTag(element, filterElem));
-  let tagList;
+  button.addEventListener('click', function() {removeTag(element, filterElem)});
+  var tagList;
   switch (filterElem) {
     case 'Ingredients':
       tagList = ingredientTags;
@@ -100,11 +111,12 @@ function addTag(element, filterElem) {
       tagList = [];
   }
   tagList.push(element);
+  console.log(element);
   filter(searchInput, ingredientTags, appareilTags, ustensilTags);
 }
 
 function removeTag(id, filterElem) {
-  let tagList;
+  var tagList;
   switch (filterElem) {
     case 'Ingredients':
       tagList = ingredientTags;
@@ -118,10 +130,10 @@ function removeTag(id, filterElem) {
     default:
       tagList = [];
   }
-  const element = document.getElementById(id);
+  var element = document.getElementById(id);
   element.remove();
 
-  const index = tagList.indexOf(id);
+  var index = tagList.indexOf(id);
   tagList.splice(index, 1);
   filter(searchInput, ingredientTags, appareilTags, ustensilTags);
 
@@ -132,25 +144,36 @@ function removeTag(id, filterElem) {
 }
 
 function filterTags(filterElem, elemList) {
-  const searchElements = document.querySelector('.searchBar' + filterElem);
-  searchElements.addEventListener('input', (e) => {
-    const element = e.target.value.toLowerCase();
+  var searchElements = document.querySelector('.searchBar' + filterElem);
+  searchElements.addEventListener('input', function(e) {{
+    var element = e.target.value.toLowerCase();
 
-    const ul = document.querySelector('.list' + filterElem);
+    var ul = document.querySelector('.list' + filterElem);
     ul.innerHTML = '';
-    const elemListFilter = [];
-    for (let i = 0; i < elemList.length; i++) {
-      const elem = elemList[i];
+    var elemListFilter = [];
+    for (var i = 0; i < elemList.length; i++) {
+      var elem = elemList[i];
       if (elem.toLowerCase().match(element)) {
         elemListFilter.push(elem);
       }
     }
-    const listUniq = [...new Set(elemListFilter)];
-    for (let i = 0; i < listUniq.length; i++) {
-      const listElement = document.createElement('li');
+    var listUniq = [];
+    for (var i = 0; i < elemListFilter.length; i++) {
+      var isElemInList = false;
+      for (var j = 0; j < listUniq.length; j++) {
+        if (elemListFilter[i] === listUniq[j]){
+          isElemInList = true;
+        }
+      }
+      if (!isElemInList) {
+        listUniq.push(elemListFilter[i]);
+      }
+    }
+    for (var i = 0; i < listUniq.length; i++) {
+      var listElement = document.createElement('li');
       listElement.innerText = listUniq[i];
       ul.append(listElement);
-      listElement.addEventListener('click', () => addTag(elem, filterElem));
+      listElement.addEventListener('click', function() {addTag(elem, filterElem)});
     }
-  });
+  }});
 }

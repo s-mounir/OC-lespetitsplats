@@ -1,32 +1,32 @@
 function recipeFactory(data) {
-  const {
+  var {
     id, name, description, applicance, servings, time, ustensils, ingredients,
   } = data;
   function getRecipeCardDOM() {
-    const recipeBlock = document.createElement('div');
+    var recipeBlock = document.createElement('div');
     recipeBlock.classList.add('recipeBlock');
 
-    const imgRecipe = document.createElement('div');
+    var imgRecipe = document.createElement('div');
     imgRecipe.classList.add('imgRecipe');
-    const recipeText = document.createElement('div');
+    var recipeText = document.createElement('div');
     recipeText.classList.add('recipeText');
 
-    const recipeName = document.createElement('h2');
+    var recipeName = document.createElement('h2');
     recipeName.classList.add('recipeName');
     recipeName.textContent = name;
-    const recipeTime = document.createElement('p');
+    var recipeTime = document.createElement('p');
     recipeTime.classList.add('recipeTime');
     recipeTime.innerHTML = '<i class="fa-regular fa-clock"></i> ' + time +' min';
-    const recipeIngredients = document.createElement('ul');
+    var recipeIngredients = document.createElement('ul');
     recipeIngredients.classList.add('recipeIngredients');
-    const recipeDetail = document.createElement('p');
+    var recipeDetail = document.createElement('p');
     recipeDetail.classList.add('recipeDetail');
     recipeDetail.textContent = description;
 
-    for (let i = 0; i < ingredients.length; i++) {
-      const { ingredient, quantity, unit } = ingredients[i];
-      const recipeIngredient = document.createElement('li');
-      const unitExist = unit ? unit : '';
+    for (var i = 0; i < ingredients.length; i++) {
+      var { ingredient, quantity, unit } = ingredients[i];
+      var recipeIngredient = document.createElement('li');
+      var unitExist = unit ? unit : '';
       if (quantity) {
         recipeIngredient.innerHTML = '<span class="ingredientName">' + ingredient + ':</span> '+ quantity + ' ' + unitExist;
       } else {
@@ -39,6 +39,5 @@ function recipeFactory(data) {
     recipeBlock.append(imgRecipe, recipeText);
     return (recipeBlock);
   }
-
   return { getRecipeCardDOM };
 }

@@ -1,41 +1,41 @@
 function filter(searchInput, ingredientTags, appareilTags, ustensilTags) {
-  const searchInputLC = searchInput.toLowerCase();
-  console.log(searchInputLC);
+  var searchInputLC = searchInput.toLowerCase();
 
-  const recipeFiltered = [];
+  var recipeFiltered = [];
 
-  for (let i = 0; i < recipes.length; i++) {
-    const recipe = recipes[i];
+  for (var i = 0; i < recipes.length; i++) {
+    var recipe = recipes[i];
     // filtre des ingredients de recettes
-    const ingIsPresent = [];
-    let ingSearchIsPresent = false;
-    for (let k = 0; k < recipe.ingredients.length; k++) {
-      const ingredient = recipe.ingredients[k].ingredient.toLowerCase();
+    var ingIsPresent = [];
+    var ingSearchIsPresent = false;
+    for (var k = 0; k < recipe.ingredients.length; k++) {
+      var ingredient = recipe.ingredients[k].ingredient.toLowerCase();
       if (ingredient.match(searchInputLC)) {
         ingSearchIsPresent = true;
       }
-      for (let j = 0; j < ingredientTags.length; j++) {
-        const ingredientTag = ingredientTags[j].toLowerCase();
+      for (var j = 0; j < ingredientTags.length; j++) {
+        var ingredientTag = ingredientTags[j].toLowerCase();
         if (ingredientTag === ingredient) {
           ingIsPresent.push(ingredientTag);
         }
       }
     }
     // filtre des appareils
-    const appIsPresent = [];
-    for (let j = 0; j < appareilTags.length; j++) {
-      const appareilTag = appareilTags[j].toLowerCase();
-      const appareil = recipe.appliance.toLowerCase();
+    var appIsPresent = [];
+    for (var j = 0; j < appareilTags.length; j++) {
+      var appareilTag = appareilTags[j].toLowerCase();
+      var appareil = recipe.appliance.toLowerCase();
       if (appareilTag === appareil) {
         appIsPresent.push(appareilTag);
       }
     }
     // filtre des ustensils
-    const ustIsPresent = [];
-    for (let j = 0; j < ustensilTags.length; j++) {
-      const ustensilTag = ustensilTags[j].toLowerCase();
-      for (let k = 0; k < recipe.ustensils.length; k++) {
-        const ustensil = recipe.ustensils[k].toLowerCase();
+    var ustIsPresent = [];
+    for (var j = 0; j < ustensilTags.length; j++) {
+      console.log(ustensilTags)
+      var ustensilTag = ustensilTags[j].toLowerCase();
+      for (var k = 0; k < recipe.ustensils.length; k++) {
+        var ustensil = recipe.ustensils[k].toLowerCase();
         if (ustensilTag === ustensil) {
           ustIsPresent.push(ustensilTag);
         }
@@ -43,13 +43,13 @@ function filter(searchInput, ingredientTags, appareilTags, ustensilTags) {
     }
 
     // filtre des noms de recettes
-    let nameIsPresent = false;
+    var nameIsPresent = false;
     if (recipe.name.toLowerCase().match(searchInputLC)) {
       nameIsPresent = true;
     }
 
     // filtre des descriptions
-    let descIsPresent = false;
+    var descIsPresent = false;
     if (recipe.description.toLowerCase().match(searchInputLC)) {
       descIsPresent = true;
     }
@@ -63,7 +63,7 @@ function filter(searchInput, ingredientTags, appareilTags, ustensilTags) {
     }
   }
 
-  console.log(recipeFiltered);
+
   displayData(recipeFiltered);
   currentList = recipeFiltered;
 }
