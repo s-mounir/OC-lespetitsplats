@@ -1,4 +1,6 @@
-function openDropdown(filterElem, list) {
+function openDropdown(filterElem) {
+  console.log('coucou je suis rentrée');
+  var list = [];
   //close all dropdown before opening a new one
   var allBtn = document.querySelectorAll('.btn');
   var allDiv = document.querySelectorAll('.dropdownOpen');
@@ -14,10 +16,12 @@ function openDropdown(filterElem, list) {
   var btn = document.querySelector('.btn' + filterElem);
   var div = document.querySelector('.div' + filterElem);
   var ul = document.querySelector('.list' + filterElem);
+  ul.innerHTML = '';
   btn.style.display = 'none';
   div.style.display = 'block';
   switch (filterElem) {
     case 'Ingredients':
+      list = ingredientList;
       for (var i = 0; i < currentList.length; i++) {
         var recipe = currentList[i];
         for (var j = 0; j < recipe.ingredients.length; j++) {
@@ -30,6 +34,7 @@ function openDropdown(filterElem, list) {
       }
       break;
     case 'Appareils':
+      list = appareilList;
       for (var i = 0; i < currentList.length; i++) {
         var recipe = currentList[i];
         var upperCase = recipe.appliance.charAt(0).toUpperCase();
@@ -39,6 +44,7 @@ function openDropdown(filterElem, list) {
       }
       break;
     case 'Ustensiles':
+      list = ustensilList;
       for (var i = 0; i < currentList.length; i++) {
         var recipe = currentList[i];
         for (var j = 0; j < recipe.ustensils.length; j++) {
@@ -65,11 +71,13 @@ function openDropdown(filterElem, list) {
       listUniq.push(list[i]);
     }
   }
-  for (var i = 0; i < listUniq.length; i++) {
+  for (var j = 0; j < listUniq.length; j++) {
     var listElement = document.createElement('li');
-    listElement.innerText = listUniq[i];
+    var element = listUniq[j];
+    listElement.innerText = element;
     ul.append(listElement);
-    listElement.addEventListener('click', () => addTag(listUniq[i], filterElem));
+    listElement.addEventListener('click', function(event) {
+      addTag(event.target, filterElem)});
   }
 }
 
@@ -87,7 +95,8 @@ function closeDropdown(filterElem, list) {
   search.value = '';
 }
 
-function addTag(element, filterElem) {
+function addTag(target, filterElem) {
+  var element = target.innerText;
   var tags = document.querySelector('.tags');
   var button = document.createElement('button');
   button.innerHTML = element + '<i class="fa-regular fa-circle-xmark"></i>';
@@ -111,8 +120,8 @@ function addTag(element, filterElem) {
       tagList = [];
   }
   tagList.push(element);
-  console.log(element);
   filter(searchInput, ingredientTags, appareilTags, ustensilTags);
+  openDropdown(filterElem);
 }
 
 function removeTag(id, filterElem) {

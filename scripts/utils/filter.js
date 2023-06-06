@@ -32,7 +32,6 @@ function filter(searchInput, ingredientTags, appareilTags, ustensilTags) {
     // filtre des ustensils
     var ustIsPresent = [];
     for (var j = 0; j < ustensilTags.length; j++) {
-      console.log(ustensilTags)
       var ustensilTag = ustensilTags[j].toLowerCase();
       for (var k = 0; k < recipe.ustensils.length; k++) {
         var ustensil = recipe.ustensils[k].toLowerCase();

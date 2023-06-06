@@ -43,9 +43,9 @@ searchRecipe.addEventListener('input', function(e) {
 var dropdownIngredients = document.querySelector('.btnIngredients');
 var dropdownAppareils = document.querySelector('.btnAppareils');
 var dropdownUstensiles = document.querySelector('.btnUstensiles');
-dropdownIngredients.addEventListener('click', function() {openDropdown('Ingredients', ingredientList)});
-dropdownAppareils.addEventListener('click', function() {openDropdown('Appareils', appareilList)});
-dropdownUstensiles.addEventListener('click', function() {openDropdown('Ustensiles', ustensilList)});
+dropdownIngredients.addEventListener('click', function() {openDropdown('Ingredients')});
+dropdownAppareils.addEventListener('click', function() {openDropdown('Appareils')});
+dropdownUstensiles.addEventListener('click', function() {openDropdown('Ustensiles')});
 
 var closeDropdownIngredients = document.querySelector('.closeDropdownIngredients');
 var closeDropdownAppareils = document.querySelector('.closeDropdownAppareils');
