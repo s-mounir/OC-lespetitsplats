@@ -1,5 +1,4 @@
 function openDropdown(filterElem) {
-  console.log('coucou je suis rentrée');
   var list = [];
   //close all dropdown before opening a new one
   var allBtn = document.querySelectorAll('.btn');
@@ -21,7 +20,6 @@ function openDropdown(filterElem) {
   div.style.display = 'block';
   switch (filterElem) {
     case 'Ingredients':
-      list = ingredientList;
       for (var i = 0; i < currentList.length; i++) {
         var recipe = currentList[i];
         for (var j = 0; j < recipe.ingredients.length; j++) {
@@ -32,9 +30,9 @@ function openDropdown(filterElem) {
           list.push(capitalizedString);
         }
       }
+      ingredientList = list;
       break;
     case 'Appareils':
-      list = appareilList;
       for (var i = 0; i < currentList.length; i++) {
         var recipe = currentList[i];
         var upperCase = recipe.appliance.charAt(0).toUpperCase();
@@ -42,9 +40,9 @@ function openDropdown(filterElem) {
         var capitalizedString = upperCase + lowerCase;
         list.push(capitalizedString);
       }
+      appareilList = list;
       break;
     case 'Ustensiles':
-      list = ustensilList;
       for (var i = 0; i < currentList.length; i++) {
         var recipe = currentList[i];
         for (var j = 0; j < recipe.ustensils.length; j++) {
@@ -55,6 +53,7 @@ function openDropdown(filterElem) {
           list.push(capitalizedString);
         }
       }
+      ustensilList = list;
       break;
     default:
       tagList = [];
@@ -150,6 +149,7 @@ function removeTag(id, filterElem) {
     && appareilTags.length === 0 && ustensilTags.length === 0) {
     init();
   }
+  openDropdown(filterElem);
 }
 
 function filterTags(filterElem, elemList) {
