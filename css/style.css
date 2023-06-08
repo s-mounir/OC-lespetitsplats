@@ -131,6 +131,11 @@ header img {
 }
 
 /* RECETTES */
+.noRecipe{
+    width: 100%;
+    grid-column: span 3;
+    text-align: center;
+}
 
 .recipeContainer{
     display: grid;
