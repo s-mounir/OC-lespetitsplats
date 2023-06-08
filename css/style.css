@@ -61,28 +61,34 @@ header img {
 }
 
 /* BOUTONS */
-
-.btn{
-    width: 170px;
-    height: 69px;
-    margin: 20px;
-    margin-left: 0;
-    color: #FFF;
-    font-weight: 700;
-    border: 0;
-    border-radius: 5px;
-    font-size: 18px;
+.dropdowns{
+    height: 100px;
 }
 
 .dropdown{
     display: inline-block;
     position: relative;
+    vertical-align: top;
+    margin: 15px;
+    margin-left: 0;
+}
+
+.btn{
+    width: 170px;
+    height: 69px;
+    color: #FFF;
+    font-weight: 700;
+    border: 0;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 0;
 }
 
 .dropdownOpen{
     display: none;
     border-radius: 5px;
     min-width: 300px;
+    max-width: 650px;
     min-height: 69px;
     top: 0;
     color: #FFF;
