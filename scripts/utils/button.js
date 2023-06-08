@@ -17,6 +17,8 @@ function openDropdown(filterElem, list) {
   ul.innerHTML = '';
   btn.style.display = 'none';
   div.style.display = 'block';
+
+  list = [];
   switch (filterElem) {
     case 'Ingredients':
       for (var i = 0; i < currentList.length; i++) {
