@@ -11,6 +11,7 @@ function openDropdown(filterElem, list) {
   btn.style.display = 'none';
   div.style.display = 'block';
 
+  list = [];
   switch (filterElem) {
     case 'Ingredients':
       currentList.map((recipe) =>
