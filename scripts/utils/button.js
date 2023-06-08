@@ -1,4 +1,4 @@
-function openDropdown(filterElem, list) {
+function openDropdown(filterElem) {
   //close all dropdown before opening a new one
   const allBtn = document.querySelectorAll('.btn');
   const allDiv = document.querySelectorAll('.dropdownOpen');
@@ -10,6 +10,8 @@ function openDropdown(filterElem, list) {
   const ul = document.querySelector('.list' + filterElem);
   btn.style.display = 'none';
   div.style.display = 'block';
+
+  const list = [];
   switch (filterElem) {
     case 'Ingredients':
       currentList.map((recipe) =>
@@ -19,6 +21,7 @@ function openDropdown(filterElem, list) {
           const capitalizedString = upperCase + lowerCase;
           return list.push(capitalizedString);
         }));
+      ingredientList = list;
       break;
     case 'Appareils':
       currentList.map((recipe) => {
@@ -27,6 +30,7 @@ function openDropdown(filterElem, list) {
         const capitalizedString = upperCase + lowerCase;
         return list.push(capitalizedString);
       });
+      appareilList = list;
       break;
     case 'Ustensiles':
       currentList.map((recipe) =>
@@ -36,6 +40,7 @@ function openDropdown(filterElem, list) {
           const capitalizedString = upperCase + lowerCase;
           return list.push(capitalizedString);
         }));
+      ustensilList = list;
       break;
     default:
       tagList = [];
@@ -47,6 +52,56 @@ function openDropdown(filterElem, list) {
     ul.append(listElement);
     listElement.addEventListener('click', () => addTag(element, filterElem));
   });
+}
+
+function updateDropdown(filterElem) {
+  console.log('yay update!')
+  const ul = document.querySelector('.list' + filterElem);
+  ul.innerHTML = '';
+
+  const list = [];
+  switch (filterElem) {
+    case 'Ingredients':
+      currentList.map((recipe) =>
+        recipe.ingredients.map((elem) => {
+          const upperCase = elem.ingredient.charAt(0).toUpperCase();
+          const lowerCase = elem.ingredient.slice(1).toLowerCase();
+          const capitalizedString = upperCase + lowerCase;
+          return list.push(capitalizedString);
+        }));
+      ingredientList = list;
+      break;
+    case 'Appareils':
+      currentList.map((recipe) => {
+        const upperCase = recipe.appliance.charAt(0).toUpperCase();
+        const lowerCase = recipe.appliance.slice(1).toLowerCase();
+        const capitalizedString = upperCase + lowerCase;
+        return list.push(capitalizedString);
+      });
+      appareilList = list;
+      break;
+    case 'Ustensiles':
+      currentList.map((recipe) =>
+        recipe.ustensils.forEach((elem) => {
+          const upperCase = elem.charAt(0).toUpperCase();
+          const lowerCase = elem.slice(1).toLowerCase();
+          const capitalizedString = upperCase + lowerCase;
+          return list.push(capitalizedString);
+        }));
+      ustensilList = list;
+      break;
+    default:
+      tagList = [];
+  }
+  const listUniq = [...new Set(list)];
+  listUniq.forEach((element) => {
+    console.log(element);
+    const listElement = document.createElement('li');
+    listElement.innerText = element;
+    ul.append(listElement);
+    listElement.addEventListener('click', () => addTag(element, filterElem));
+  });
+  console.log(listUniq);
 }
 
 function closeDropdown(filterElem, list) {
@@ -88,6 +143,7 @@ function addTag(element, filterElem) {
   }
   tagList.push(element);
   filter(searchInput, ingredientTags, appareilTags, ustensilTags);
+  updateDropdown(filterElem);
 }
 
 function removeTag(id, filterElem) {
@@ -116,6 +172,7 @@ function removeTag(id, filterElem) {
     && appareilTags.length === 0 && ustensilTags.length === 0) {
     init();
   }
+  updateDropdown(filterElem);
 }
 
 function filterTags(filterElem, elemList) {
