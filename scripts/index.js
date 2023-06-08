@@ -50,9 +50,9 @@ searchRecipe.addEventListener('input', (e) => {
 const dropdownIngredients = document.querySelector('.btnIngredients');
 const dropdownAppareils = document.querySelector('.btnAppareils');
 const dropdownUstensiles = document.querySelector('.btnUstensiles');
-dropdownIngredients.addEventListener('click', () => openDropdown('Ingredients'));
-dropdownAppareils.addEventListener('click', () => openDropdown('Appareils'));
-dropdownUstensiles.addEventListener('click', () => openDropdown('Ustensiles'));
+dropdownIngredients.addEventListener('click', () => openDropdown('Ingredients', ingredientList));
+dropdownAppareils.addEventListener('click', () => openDropdown('Appareils', appareilList));
+dropdownUstensiles.addEventListener('click', () => openDropdown('Ustensiles', ustensilList));
 
 const closeDropdownIngredients = document.querySelector('.closeDropdownIngredients');
 const closeDropdownAppareils = document.querySelector('.closeDropdownAppareils');

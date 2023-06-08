@@ -1,4 +1,4 @@
-function openDropdown(filterElem) {
+function openDropdown(filterElem, list) {
   //close all dropdown before opening a new one
   const allBtn = document.querySelectorAll('.btn');
   const allDiv = document.querySelectorAll('.dropdownOpen');
@@ -11,7 +11,6 @@ function openDropdown(filterElem) {
   btn.style.display = 'none';
   div.style.display = 'block';
 
-  const list = [];
   switch (filterElem) {
     case 'Ingredients':
       currentList.map((recipe) =>
@@ -21,7 +20,6 @@ function openDropdown(filterElem) {
           const capitalizedString = upperCase + lowerCase;
           return list.push(capitalizedString);
         }));
-      ingredientList = list;
       break;
     case 'Appareils':
       currentList.map((recipe) => {
@@ -30,7 +28,6 @@ function openDropdown(filterElem) {
         const capitalizedString = upperCase + lowerCase;
         return list.push(capitalizedString);
       });
-      appareilList = list;
       break;
     case 'Ustensiles':
       currentList.map((recipe) =>
@@ -40,7 +37,6 @@ function openDropdown(filterElem) {
           const capitalizedString = upperCase + lowerCase;
           return list.push(capitalizedString);
         }));
-      ustensilList = list;
       break;
     default:
       tagList = [];
@@ -55,7 +51,6 @@ function openDropdown(filterElem) {
 }
 
 function updateDropdown(filterElem) {
-  console.log('yay update!')
   const ul = document.querySelector('.list' + filterElem);
   ul.innerHTML = '';
 
@@ -95,13 +90,11 @@ function updateDropdown(filterElem) {
   }
   const listUniq = [...new Set(list)];
   listUniq.forEach((element) => {
-    console.log(element);
     const listElement = document.createElement('li');
     listElement.innerText = element;
     ul.append(listElement);
     listElement.addEventListener('click', () => addTag(element, filterElem));
   });
-  console.log(listUniq);
 }
 
 function closeDropdown(filterElem, list) {
@@ -178,6 +171,7 @@ function removeTag(id, filterElem) {
 function filterTags(filterElem, elemList) {
   const searchElements = document.querySelector('.searchBar' + filterElem);
   searchElements.addEventListener('input', (e) => {
+    console.log(elemList);
     const element = e.target.value.toLowerCase();
 
     const ul = document.querySelector('.list' + filterElem);
