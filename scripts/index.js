@@ -11,10 +11,18 @@ async function displayData(RecipeList) {
   var recipesSection = document.querySelector('.recipeContainer');
   recipesSection.innerHTML = '';
 
-  for (var i = 0; i < RecipeList.length; i++) {
-    var recipeModel = recipeFactory(RecipeList[i]);
-    var recipeCardDOM = recipeModel.getRecipeCardDOM();
-    recipesSection.appendChild(recipeCardDOM);
+  if(RecipeList.length > 0){
+    for (var i = 0; i < RecipeList.length; i++) {
+      var recipeModel = recipeFactory(RecipeList[i]);
+      var recipeCardDOM = recipeModel.getRecipeCardDOM();
+      recipesSection.appendChild(recipeCardDOM);
+    }
+  }else{
+    console.log('aie aie aie');
+    var noRecipe = document.createElement('p');
+    noRecipe.classList.add('noRecipe');
+    noRecipe.innerHTML = 'Aucune recette ne correspond à votre critère… <br/> Vous pouvez chercher « tarte aux pommes », « poisson », etc...';
+    recipesSection.appendChild(noRecipe);
   }
 }
 
