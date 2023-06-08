@@ -1,5 +1,4 @@
-function openDropdown(filterElem) {
-  var list = [];
+function openDropdown(filterElem, list) {
   //close all dropdown before opening a new one
   var allBtn = document.querySelectorAll('.btn');
   var allDiv = document.querySelectorAll('.dropdownOpen');
@@ -30,7 +29,6 @@ function openDropdown(filterElem) {
           list.push(capitalizedString);
         }
       }
-      ingredientList = list;
       break;
     case 'Appareils':
       for (var i = 0; i < currentList.length; i++) {
@@ -40,7 +38,6 @@ function openDropdown(filterElem) {
         var capitalizedString = upperCase + lowerCase;
         list.push(capitalizedString);
       }
-      appareilList = list;
       break;
     case 'Ustensiles':
       for (var i = 0; i < currentList.length; i++) {
@@ -53,7 +50,6 @@ function openDropdown(filterElem) {
           list.push(capitalizedString);
         }
       }
-      ustensilList = list;
       break;
     default:
       tagList = [];
